@@ -6,7 +6,7 @@ export default function MyNav() {
 
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar bg="warning" data-bs-theme="light" className="shadow sticky-top">
         <Container>
           <Navbar.Brand href="#home">EpiBOOKS</Navbar.Brand>
           <Nav className="me-auto">

@@ -8,13 +8,11 @@ export default function MyBookCard({bookdata}) {
   return (
     <>
       <div>
-        <Card className="card-book-box shadow">
-          <Card.Img variant="top" src={img}/>
+        <Card className="card-book-box shadow" text="dark">
+          <Card.Img className="card-book-img" variant="top" src={img}/>
             <Card.Body>
-              <Card.Title>{title}</Card.Title>
-              <Card.Text>
-                price: {price}
-              </Card.Text>
+              <Card.Title className="text-truncate fs-6 fw-bold">{title}</Card.Title>
+              <Card.Text><strong>price</strong>: {price} €</Card.Text>
             </Card.Body>          
         </Card>
       </div>

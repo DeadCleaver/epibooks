@@ -10,3 +10,7 @@ img.card-book-img {
 .card-text {
     color: black;
 }
+
+.selected-book {
+    border: 3px red !important;
+}

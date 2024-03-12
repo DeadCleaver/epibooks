@@ -8,7 +8,6 @@ import Wellcome from "./Wellcome/Wellcome";
 
 function App() {
   const fantasyBooks = fantasy;
-  console.log(fantasyBooks);
 
   return (
     <>

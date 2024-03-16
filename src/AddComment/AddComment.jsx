@@ -2,43 +2,23 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 
-export default function AddComment(bookid) {
-  const bookCommentsApi = `https://striveschool-api.herokuapp.com/api/comments`;
-  const authToken = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY1NDExMDdiZWEzMTAwMWEyZGYyZGIiLCJpYXQiOjE3MTA1NzE3OTMsImV4cCI6MTcxMTc4MTM5M30.DopAh1Mek9bSIzqCU-4FAeczLM_hQX41K_BrLTxOBp0`;
+export default function AddComment({ onAddComment}) {
 
   const [newComment, setNewComment] = useState(``);
   const [newRating, setNewRating] = useState(``);
 
-  async function postComment(event) {
+  const submitComment = async (event) => {
     event.preventDefault();
 
-    try {
-      const response = await fetch(bookCommentsApi, {
-        method: `POST`,  
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': authToken
-        },
-        body: JSON.stringify({
-          comment: newComment,
-          rate: newRating,
-          elementId: bookid,
-      })
-    });
+    onAddComment({comment: newComment, rate: newRating});
 
-      if (!response.ok) {
-        throw new Error('Failed to add comment');
-      } 
-      setNewComment('');
-      setNewRating('');
-    } catch (error) {
-      alert('Error adding comment:', error);
-    }
-  };
+    setNewComment('');
+    setNewRating('');
+  }
 
   return (
     <>
-      <Form onSubmit={postComment}>
+      <Form onSubmit={submitComment}>
         <Form.Group className="mb-3">
           <Form.Control
             as="textarea"
@@ -58,7 +38,7 @@ export default function AddComment(bookid) {
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="4">2</option>
+            <option value="4">4</option>
             <option value="5">5</option>
           </Form.Select>
         </Form.Group>

@@ -1,20 +1,20 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyNav from "./MyNav/MyNav";
-import fantasy from "./books/fantasy.json";
+import scifi from "./books/scifi.json";
 import AllTheBooks from "./AllTheBooks/AllTheBooks";
 import MyFooter from "./MyFooter/MyFooter";
 import Wellcome from "./Wellcome/Wellcome";
 
 function App() {
-  const fantasyBooks = fantasy;
+  const books = scifi;
 
   return (
     <>
       <main>
         <MyNav></MyNav>
         <Wellcome></Wellcome>
-        <AllTheBooks books={fantasyBooks}></AllTheBooks>
+        <AllTheBooks books={books}></AllTheBooks>
         <MyFooter></MyFooter>
       </main>
     </>

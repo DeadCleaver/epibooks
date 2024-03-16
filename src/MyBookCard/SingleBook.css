@@ -1,16 +1,11 @@
 .card-book-box {
-    height: 405px;
+    min-height: 555px;
 }
 
 img.card-book-img {
-    max-height: 320px;
-    width: 100%;
+    max-height: 470px;
 }
 
 .card-text {
     color: black;
-}
-
-.selected-book {
-    border: 3px red !important;
 }

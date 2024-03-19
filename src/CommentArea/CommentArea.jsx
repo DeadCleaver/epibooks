@@ -30,8 +30,8 @@ export default function CommentArea({bookid}) {
  useEffect(() => {
    getComments();
  }, []); 
-
- const addComment = async (newCommentData) => {
+ 
+ async function addComment(newCommentData) {
   try {
     const response = await fetch(`${bookApi}comments/`, {
       method: `POST`,  

@@ -1,18 +1,32 @@
-import React from "react";
-import { Container, Nav, Navbar, InputGroup, Form, Button } from "react-bootstrap";
+import React, { useContext } from "react";
+import {
+  Container,
+  Row,
+  Nav,
+  Navbar,
+  InputGroup,
+  Form,
+  Button,
+  Col,
+} from "react-bootstrap";
 import { useState } from "react";
+import { ThemeContext } from "../ThemeContexProvider/ThemeContextProvider";
 
-export default function MyNav({onSearchBook, onClearSearch }) {
-
+export default function MyNav({ onSearchBook, onClearSearch }) {
   const menuitems = ["Home", "About", "Browse"];
   const [searchField, setSearchField] = useState("");
+  const { theme, setTheme } = useContext(ThemeContext);
 
   return (
     <>
-      <Navbar bg="warning" data-bs-theme="light" className="shadow sticky-top">
+      <Navbar
+        bg={theme === "dark" ? "dark" : "warning"}
+        data-bs-theme={theme === "dark" ? "dark" : "light"}
+        className="shadow sticky-top"
+      >
         <Container>
           <Navbar.Brand href="#home">EpiBOOKS</Navbar.Brand>
-          <Nav className="me-auto">
+          <Nav>
             {menuitems.map((item, index) => (
               <Nav.Link key={index} href="#">
                 {item}
@@ -20,26 +34,37 @@ export default function MyNav({onSearchBook, onClearSearch }) {
             ))}
           </Nav>
 
-          <InputGroup className="ms-5">
-          <Form.Control
-            placeholder="Search for a book title"
-            aria-label="Search for a book title"
-            aria-describedby="basic-addon2"
-            value={searchField}
-            onChange={(e) => setSearchField(e.target.value)}
-          />
-          <Button 
-            onClick={(e) =>  onSearchBook(searchField)}
-            variant="outline-secondary">
-            Search
-          </Button>
-          <Button
-            onClick={(e) =>  onClearSearch()}
-            variant="outline-secondary">
-            Clear
-          </Button>
-        </InputGroup>
+          <InputGroup>
+            <Button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              variant="outline-secondary"
+              size="sm"
+            >
+              Change Theme
+            </Button>
+          </InputGroup>
 
+          <InputGroup>
+            <Form.Control
+              placeholder="Search for a book title"
+              aria-label="Search for a book title"
+              aria-describedby="basic-addon2"
+              value={searchField}
+              onChange={(e) => setSearchField(e.target.value)}
+            />
+            <Button
+              onClick={(e) => onSearchBook(searchField)}
+              variant="outline-secondary"
+            >
+              Search
+            </Button>
+            <Button
+              onClick={(e) => onClearSearch()}
+              variant="outline-secondary"
+            >
+              Clear
+            </Button>
+          </InputGroup>
         </Container>
       </Navbar>
     </>

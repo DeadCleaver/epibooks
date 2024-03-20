@@ -6,9 +6,10 @@ import AllTheBooks from "./AllTheBooks/AllTheBooks";
 import MyFooter from "./MyFooter/MyFooter";
 import Wellcome from "./Wellcome/Wellcome";
 import { useEffect, useState } from "react";
+import ThemeContextProvider from "./ThemeContexProvider/ThemeContextProvider";
 
 function App() {
-
+  
   const [bookList, setBookList] = useState([]);
 
   useEffect(() => {
@@ -20,19 +21,21 @@ function App() {
       el.title.toLowerCase().includes(title.toLowerCase())
     );
     setBookList(filteredBooks);
-  };
+  }
 
   function clearSearch() {
     setBookList(scifi);
-  };
+  }
 
   return (
     <>
       <main>
-        <MyNav onSearchBook={searchBook} onClearSearch={clearSearch}></MyNav>
-        <Wellcome></Wellcome>
-        <AllTheBooks books={bookList}></AllTheBooks>
-        <MyFooter></MyFooter>
+        <ThemeContextProvider>
+          <MyNav onSearchBook={searchBook} onClearSearch={clearSearch}></MyNav>
+          <Wellcome></Wellcome>
+          <AllTheBooks books={bookList}></AllTheBooks>
+          <MyFooter></MyFooter>
+        </ThemeContextProvider>
       </main>
     </>
   );

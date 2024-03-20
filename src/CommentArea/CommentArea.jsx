@@ -25,7 +25,8 @@ export default function CommentArea({bookid}) {
       alert(`Error fetching comments: `, (error));
     }
 
-  }
+  };
+
 
  useEffect(() => {
    getComments();
@@ -56,9 +57,28 @@ export default function CommentArea({bookid}) {
   }
 };
 
+async function deleteComment(commentId) {
+  try {
+    const response = await fetch(`${bookApi}comments/${commentId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': authToken
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete comment');
+    }
+
+    getComments();
+  } catch (error) {
+    alert('Error deleting comment:', error);
+  }
+};
+
   return (
     <>
-        <CommentList comments={comments}/>
+        <CommentList comments={comments} onRemoveComment={deleteComment}/>
         <AddComment onAddComment={addComment}/>
     </>
   );

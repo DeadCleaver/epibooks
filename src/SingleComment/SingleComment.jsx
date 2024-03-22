@@ -7,6 +7,7 @@ export default function SingleComment({ commentdata, index, onRemoveComment }) {
 
 
   return (
+
     <Accordion.Item eventKey={index}>
       <Accordion.Header className="my-small-text">{author}</Accordion.Header>
       <Accordion.Body className="my-small-text">
